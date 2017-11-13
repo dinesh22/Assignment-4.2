@@ -1,0 +1,27 @@
+Data(pig_population):
+
+1989,m,14536
+1989,f,14853
+1990,m,15386
+1990,f,15316
+1991,f,16358
+1991,m,15865
+
+Command:
+
+population = LOAD '/home/acadgild/pig_population' USING PigStorage(',') AS 
+(year:int, gender:chararray, pop:int);
+
+split_gender = GROUP population BY gender;
+
+mySum = FOREACH split_gender GENERATE SUM(population.pop), gender;
+
+Dump mySum;
+
+
+Output :
+
+29992,m
+30169,f
+
+

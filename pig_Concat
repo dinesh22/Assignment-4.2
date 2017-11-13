@@ -1,0 +1,19 @@
+Data(pig_name):
+
+(Dinesh,Santhanam)
+(Sai,Raj)
+
+
+Command:
+
+a=Load '/home/acadgild/pig_name' using PigStorage(',') As(fname:chararray,lname:chararray);
+
+b = FOREACH a GENERATE CONCAT((chararray)fname,(chararray)lname);
+
+dump b;
+
+
+Output :
+
+(Dinesh,Santhanam)
+(Sai,Raj)

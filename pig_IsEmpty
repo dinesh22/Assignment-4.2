@@ -1,0 +1,40 @@
+
+Data(emp_sales):
+
+1,Robin,22,25000,sales 
+2,BOB,23,30000,sales 
+3,Maya,23,25000,sales 
+4,Sara,25,40000,sales 
+5,David,23,45000,sales 
+6,Maggy,22,35000,sales
+
+Data(emp_bonus):
+
+1,Robin,22,25000,sales 
+2,Jaya,23,20000,admin 
+3,Maya,23,25000,sales 
+4,Alia,25,50000,admin 
+5,David,23,45000,sales 
+6,Omar,30,30000,admin
+
+
+Command :
+
+emp_sales = LOAD '/user/hadoop/emp_sales' USING PigStorage(',')
+   as (sno:int, name:chararray, age:int, salary:int, dept:chararray);
+	
+emp_bonus = LOAD '/user/hadoop/emp_bonus' USING PigStorage(',')
+   as (sno:int, name:chararray, age:int, salary:int, dept:chararray);
+
+cogroup_data = COGROUP emp_sales by age, emp_bonus by age;
+
+isempty_data = filter cogroup_data by IsEmpty(emp_sales);
+
+Dump isempty_data; 
+
+
+
+Output:
+
+(30,{},{(6,Omar,30,30000,admin)})
+

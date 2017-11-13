@@ -1,0 +1,20 @@
+Data(pig_tokenize):
+
+Dinesh Santhanam
+Sai Raj
+
+
+Command:
+
+a = LOAD '/user/hadoop/pig_tokenize' USING PigStorage(',') AS (name:chararray);
+
+n = FOREACH a GENERATE TOKENIZE(name);
+
+DUMP n;
+
+
+Output :
+
+({(Dinesh),(Santhanam)})
+({(Sai),(Raj)})
+
