@@ -1,0 +1,31 @@
+Data(word_count):
+
+It's not a bad quetion, but its not the first question that needs
+to be addressed either.
+
+Command :
+
+lines = LOAD '/user/acadgild/word_count' AS (line:chararray);
+words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) as word;
+dump words
+
+Output:
+
+(It's)
+(not)
+(a)
+(bad)
+(quetion)
+(but)
+(its)
+(not)
+(the)
+(first)
+(question)
+(that)
+(needs)
+(to)
+(be)
+(addressed)
+(either.)
+
